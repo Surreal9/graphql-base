@@ -1,0 +1,31 @@
+schema {
+  query: Query
+  mutation: Mutation
+#  subscription: Subscription
+}
+
+type Query {
+  customers: [Customer!]!
+}
+
+type Mutation {
+  createOrder(order: CreateOrderInput): CreateOrderPayload!
+}
+
+type Customer {
+  id: ID!
+  name: String!
+  email: String!
+  orderHistory: [Orders!]!
+}
+
+type Order {
+  id: ID!
+  products: [Product!]!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  description: String!
+}

@@ -1,0 +1,6 @@
+type Customer {
+  id: ID!
+  name: String!
+  email: String!
+  orderHistory: [Order!]!
+}

@@ -1,0 +1,19 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-eslint-rules", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "curly": false,
+    "no-implicit-dependencies": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-var-requires": false,
+    "interface-over-type-literal": false,
+    "semicolon": [true, "always"],
+    "interface-name": [true, "never-prefix"],
+    "import-name": false,
+    "no-console": { "severity": "warning" },
+    "max-classes-per-file": { "severity": "warning" }
+  },
+  "rulesDirectory": []
+}

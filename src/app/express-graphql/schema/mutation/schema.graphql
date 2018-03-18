@@ -1,0 +1,12 @@
+type Mutation {
+  customerSave(customer: CustomerSaveInput): CustomerSavePayload!
+}
+
+input CustomerSaveInput {
+  name: String!
+}
+
+type CustomerSavePayload {
+  customer: Customer
+  error: String
+}

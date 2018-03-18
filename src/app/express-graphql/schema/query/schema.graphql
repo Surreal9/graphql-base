@@ -1,0 +1,4 @@
+type Query {
+  customers: [Customer!]!
+  customerByName(name: String): Customer
+}
