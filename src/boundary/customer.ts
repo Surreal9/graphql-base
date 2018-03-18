@@ -9,9 +9,17 @@ import {
 } from './responses/customers';
 
 export interface CustomerApi {
-  saveCustomer(request: SaveCustomerRequest): Promise<SaveCustomerResponse>;
-  loadAllCustomers(): Promise<LoadAllCustomerResponse>;
-  loadCustomerByName(
+  load: LoadCustomerInteraction;
+  save: SaveCustomerInteraction;
+}
+
+export interface SaveCustomerInteraction {
+  execute(request: SaveCustomerRequest): Promise<SaveCustomerResponse>;
+}
+
+export interface LoadCustomerInteraction {
+  allCustomers(): Promise<LoadAllCustomerResponse>;
+  customerByName(
     request: LoadCustomerByNameRequest
   ): Promise<LoadCustomerByNameResponse>;
 }

@@ -1,3 +1,4 @@
+import { LoadCustomerInteraction } from './../../../boundary/customer';
 import { injectable, inject } from 'inversify';
 import { TYPES } from '../../../app/container/constants';
 import {
@@ -8,7 +9,7 @@ import { CustomerGateway } from '../../../boundary/customer';
 import { LoadCustomerByNameRequest } from '../../../boundary/requests/customers';
 
 @injectable()
-export class LoadCustomerInteractor {
+export class LoadCustomerInteractor implements LoadCustomerInteraction {
   private customerGateway: CustomerGateway;
 
   constructor(@inject(TYPES.CustomerGateway) customerGateway: CustomerGateway) {

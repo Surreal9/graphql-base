@@ -1,6 +1,10 @@
 import 'reflect-metadata';
 import { Container, ContainerModule } from 'inversify';
-import { CustomerGateway } from './../../boundary/customer';
+import {
+  CustomerGateway,
+  LoadCustomerInteraction,
+  SaveCustomerInteraction,
+} from './../../boundary/customer';
 import { CustomerDbGateway } from '../../entity-gateways/customer-db-gateway';
 import { TYPES } from './constants';
 import { SaveCustomerInteractor } from '../../core/interactors/customer/save-customer';
@@ -11,10 +15,10 @@ import { CustomerApi } from '../../boundary/customer';
 
 export const config = new ContainerModule(bind => {
   bind<CustomerGateway>(TYPES.CustomerGateway).to(CustomerDbGateway);
-  bind<SaveCustomerInteractor>(TYPES.SaveCustomerInteractor).to(
+  bind<SaveCustomerInteraction>(TYPES.SaveCustomerInteraction).to(
     SaveCustomerInteractor
   );
-  bind<LoadCustomerInteractor>(TYPES.LoadCustomerInteractor).to(
+  bind<LoadCustomerInteraction>(TYPES.LoadCustomerInteraction).to(
     LoadCustomerInteractor
   );
   bind<KnexGateway>(TYPES.KnexGateway)

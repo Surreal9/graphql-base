@@ -1,8 +1,8 @@
 export const TYPES = {
   CustomerGateway: Symbol('CustomerGateway'),
   CustomerApi: Symbol('CustomerApi'),
-  SaveCustomerInteractor: Symbol('SaveCustomerInteractor'),
-  LoadCustomerInteractor: Symbol('LoadCustomerInteractor'),
+  SaveCustomerInteraction: Symbol('SaveCustomerInteraction'),
+  LoadCustomerInteraction: Symbol('LoadCustomerInteraction'),
   KnexGateway: Symbol('KnexGateway'),
   ApiContext: Symbol('ApiContext'),
 };
