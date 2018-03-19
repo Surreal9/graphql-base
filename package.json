@@ -19,6 +19,7 @@
     "create-migration": "knex migrate:make",
     "migrations": "knex migrate:latest",
     "reset-db": "npm run build && node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
+    "reset-test-db": "npm run build && NODE_ENV=test node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
     "seed": "npm run build && knex seed:run --knexfile dist/knexfile.js"
   },
   "lint-staged": {
@@ -33,7 +34,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "collectCoverage": true,
-    "setupTestFrameworkScriptFile": "<rootDir>/test/setup-tests.ts",
+    "globalSetup": "<rootDir>/test/global-setup.js",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
@@ -43,6 +44,11 @@
       "json",
       "node"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "post-checkout": "npm run reset-test-db"
+    }
   },
   "main": "src/index.js",
   "repository": {
@@ -67,6 +73,7 @@
     "knex": "^0.14.4",
     "knex-cleaner": "^1.1.4",
     "lodash": "^4.17.5",
+    "npm-run": "^4.1.2",
     "pg": "^7.4.1",
     "reflect-metadata": "^0.1.12",
     "sqlite3": "^4.0.0"
@@ -90,6 +97,7 @@
     "nodemon": "^1.17.2",
     "prettier": "^1.11.1",
     "ts-jest": "^22.4.1",
+    "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.10.0",
     "tslint-eslint-rules": "^5.1.0",

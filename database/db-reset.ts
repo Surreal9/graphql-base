@@ -1,10 +1,14 @@
 import { wipeDb } from './db-wiper';
+import { env } from '../config';
 import { runMigrations } from './migration-runner';
 import knex from './index';
 import path from 'path';
 
+console.log('Resetting db, environment', env);
+
 // Drop all tables, run migrations, then seed
 export function reset() {
+  console.log('reset!');
   return wipeDb()
     .then(runMigrations)
     .then(() =>

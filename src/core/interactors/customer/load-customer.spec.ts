@@ -7,7 +7,8 @@ test('can load a customer', async () => {
     TYPES.LoadCustomerInteraction
   );
   const { customers } = await loadCustomer.allCustomers();
-  expect(customers.length).toBeGreaterThan(1);
+  console.log(customers);
+  expect(customers.length).toBeGreaterThan(0);
 });
 
 test('can load a customer by name', async () => {
