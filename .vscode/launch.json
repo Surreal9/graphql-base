@@ -14,7 +14,6 @@
       "type": "node",
       "request": "launch",
       "name": "Local Nodemon",
-      "preLaunchTask": "tsc-watch",
       "protocol": "auto",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "debug"],

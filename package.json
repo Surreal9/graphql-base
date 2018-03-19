@@ -15,7 +15,7 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "dev": "NODE_ENV=development nodemon --watch src -e ts,graphql,js --exec 'npm run debug'",
     "precommit": "lint-staged",
-    "test": "NODE_ENV=localtest jest --no-cache --config ./jest.config.json",
+    "test": "NODE_ENV=localtest jest --no-cache --config ./jest.config.json --coverage",
     "create-migration": "knex migrate:make",
     "migrations": "knex migrate:latest",
     "seed": "knex seed:run"
@@ -31,6 +31,7 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
+    "collectCoverage": true,
     "setupTestFrameworkScriptFile": "<rootDir>/src/setup-tests.ts",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
