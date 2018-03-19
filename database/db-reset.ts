@@ -8,7 +8,6 @@ console.log('Resetting db, environment', env);
 
 // Drop all tables, run migrations, then seed
 export function reset() {
-  console.log('reset!');
   return wipeDb()
     .then(runMigrations)
     .then(() =>

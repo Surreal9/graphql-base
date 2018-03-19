@@ -7,8 +7,6 @@ test('can save a customer', async () => {
   const saveCustomer = container.get<SaveCustomerInteraction>(
     TYPES.SaveCustomerInteraction
   );
-  // tslint:disable-next-line:no-console
   const result = await saveCustomer.execute({ name: 'testing' });
-  console.log({ result });
   expect(true).toBe(true);
 });

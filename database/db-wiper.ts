@@ -2,7 +2,6 @@ import knex from './index';
 import Promise from 'bluebird';
 
 export function wipeDb() {
-  console.log('wipedb');
   return knex
     .raw(
       `select 'drop table if exists "' || tablename || '" cascade;' as cmd

@@ -7,7 +7,6 @@ import { join as pathJoin } from 'path';
 import { getDirectories } from './util';
 
 export default function loadSchema() {
-  console.log(pathJoin(__dirname, 'schema'));
   const schemaTypes = getDirectories(pathJoin(__dirname, 'schema'));
 
   const typeSchemas: string[] = [];
@@ -38,8 +37,6 @@ export default function loadSchema() {
   }
 
   const resolvers: any = merge({}, ...typeResolvers);
-
-  console.log({ schemaFiles, schemaTypes, typeResolvers, resolvers });
 
   const executableSchema: any = makeExecutableSchema({
     resolvers,

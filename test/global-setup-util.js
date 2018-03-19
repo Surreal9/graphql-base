@@ -14,7 +14,7 @@ async function getCachedSha() {
   const content = await asyncReadFile(path.join(cacheFile), 'utf8').catch(
     () => ''
   );
-  console.log(content);
+  console.log('content', content);
   return content;
 }
 
@@ -67,11 +67,9 @@ function reset() {
   //     resolve('Reset test db success');
   //   });
   // });
-  console.log(
-    npmRun.sync(`ts-node -e "require('./database/db-reset').resetFromCLI()"`, {
-      stdio: [0, 1, 2],
-    })
-  );
+  npmRun.sync(`ts-node -e "require('./database/db-reset').resetFromCLI()"`, {
+    stdio: [0, 1, 2],
+  });
 }
 
 module.exports = {

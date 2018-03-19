@@ -1,4 +1,3 @@
-console.log('hm');
 const {
   checkForRecentDatabaseChanges,
   checkForTestShaCache,
