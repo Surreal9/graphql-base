@@ -1,10 +1,11 @@
-// const knexCleaner = require('knex-cleaner');
-// const casual = require('casual');
-import knex from '../../';
-// import { values } from 'lodash';
-console.log('seed!');
-const customers = [{ name: 'Joe' }, { name: 'Frank' }];
+const knexCleaner = require('knex-cleaner');
+import knex from '../../index';
+import { customers } from '../../../test/fixtures/customers';
 
 export function seed() {
-  return knex('customers').insert(customers);
+  return knexCleaner
+    .clean(knex, {
+      ignoreTables: ['migrations', 'migrations_lock', 'spatial_ref_sys'],
+    })
+    .then(() => knex('customers').insert(customers));
 }

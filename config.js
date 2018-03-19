@@ -8,4 +8,7 @@ module.exports = {
   env: env.NODE_ENV,
   isDev: env.NODE_ENV === 'development' || env.NODE_ENV === 'localtest',
   isTest: env.NODE_ENV.indexOf('test') > -1,
+  database: {
+    connection: env.DATABASE_URL,
+  },
 };

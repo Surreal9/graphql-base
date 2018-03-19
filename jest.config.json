@@ -7,7 +7,7 @@
   "transform": {
     ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
   },
-  "setupTestFrameworkScriptFile": "<rootDir>/src/setup-tests.ts",
+  "setupTestFrameworkScriptFile": "<rootDir>/test/setup-tests.ts",
   "testEnvironment": "node",
   "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
   "moduleFileExtensions": ["ts", "js", "json"]

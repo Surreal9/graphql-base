@@ -3,4 +3,4 @@ exports.up = knex =>
     table.string('name');
   });
 
-exports.down = knex => knex.schema.dropTable('customers');
+exports.down = knex => knex.schema.dropTable('customers2');

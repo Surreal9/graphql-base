@@ -10,15 +10,16 @@
   "scripts": {
     "clean": "rm -rf dist",
     "concat-schema": "find ./src/app/express-graphql/schema -type f -name '*.graphql' -exec cat {} + > ./dist/src/app/express-graphql/schema.graphql",
-    "build": "npm run clean && tsc -p ./tsconfig.json --pretty && npm run concat-schema",
+    "build": "npm run clean && tsc -p ./tsconfig.json --pretty && npm run concat-schema && cp .env dist/.env",
     "debug": "npm run build && NODE_ENV=development nodemon --watch ./dist --inspect=0.0.0.0:5858 --nolazy ./dist/src/app/express-graphql/start.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "dev": "NODE_ENV=development nodemon --watch src -e ts,graphql,js --exec 'npm run debug'",
     "precommit": "lint-staged",
-    "test": "NODE_ENV=localtest jest --no-cache --config ./jest.config.json --coverage",
+    "test": "NODE_ENV=test jest --no-cache --config ./jest.config.json",
     "create-migration": "knex migrate:make",
     "migrations": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "reset-db": "npm run build && node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
+    "seed": "npm run build && knex seed:run --knexfile dist/knexfile.js"
   },
   "lint-staged": {
     "*.js": [
@@ -32,7 +33,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "collectCoverage": true,
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setup-tests.ts",
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup-tests.ts",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
@@ -84,6 +85,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
     "jest": "^22.4.2",
+    "jest-changed-files": "^22.2.0",
     "lint-staged": "^7.0.0",
     "nodemon": "^1.17.2",
     "prettier": "^1.11.1",

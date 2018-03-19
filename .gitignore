@@ -6,3 +6,4 @@ npm-debug.log
 doc/schema
 coverage
 dist
+yarn-error.log
