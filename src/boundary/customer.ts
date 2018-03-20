@@ -6,6 +6,7 @@ import {
   SaveCustomerResponse,
   LoadAllCustomerResponse,
   LoadCustomerByNameResponse,
+  SaveCustomerGatewayResponse,
 } from './responses/customers';
 
 export interface CustomerApi {
@@ -25,7 +26,9 @@ export interface LoadCustomerInteraction {
 }
 
 export interface CustomerGateway {
-  saveCustomer(request: SaveCustomerRequest): Promise<SaveCustomerResponse>;
+  saveCustomer(
+    request: SaveCustomerRequest
+  ): Promise<SaveCustomerGatewayResponse>;
   loadAllCustomers(): Promise<LoadAllCustomerResponse>;
   loadCustomerByName(
     request: LoadCustomerByNameRequest

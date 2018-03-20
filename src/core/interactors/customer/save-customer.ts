@@ -13,6 +13,10 @@ export class SaveCustomerInteractor {
   }
 
   public execute(request: SaveCustomerRequest): Promise<SaveCustomerResponse> {
-    return this.customerGateway.saveCustomer(request);
+    const error = undefined;
+
+    return this.customerGateway
+      .saveCustomer(request)
+      .then(({ customer }) => ({ customer, error }));
   }
 }

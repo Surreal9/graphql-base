@@ -1,3 +1,4 @@
+// As of yet the jest does not support TS in "globalSetup"
 const {
   checkForRecentDatabaseChanges,
   checkForTestShaCache,

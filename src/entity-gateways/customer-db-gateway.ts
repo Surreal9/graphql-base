@@ -1,27 +1,33 @@
 import { first } from 'lodash';
 import { TYPES } from './../app/container/constants';
-import { SaveCustomerRequest } from './../boundary/requests/customers';
+import {
+  SaveCustomerRequest,
+  LoadCustomerByNameRequest,
+} from './../boundary/requests/customers';
 import { CustomerGateway } from './../boundary/customer';
 import {
-  SaveCustomerResponse,
   LoadAllCustomerResponse,
   LoadCustomerByNameResponse,
+  SaveCustomerGatewayResponse,
 } from '../boundary/responses/customers';
 import { injectable, inject } from 'inversify';
 import { KnexGateway } from './knex-gateway';
-import { LoadCustomerByNameRequest } from '../boundary/requests/customers';
 import { CustomerType } from '../core/entities/customer';
 
 @injectable()
 export class CustomerDbGateway implements CustomerGateway {
-  @inject(TYPES.KnexGateway) private knexGateway!: KnexGateway;
+  private knexGateway!: KnexGateway;
+
+  public constructor(@inject(TYPES.KnexGateway) knexGateway: KnexGateway) {
+    this.knexGateway = knexGateway;
+  }
 
   public async saveCustomer(
     request: SaveCustomerRequest
-  ): Promise<SaveCustomerResponse> {
+  ): Promise<SaveCustomerGatewayResponse> {
     // const qb = this.knexGateway.getBuilder('customers');
     // const customers = await qb;
-    const response: Promise<SaveCustomerResponse> = Promise.resolve({
+    const response: Promise<SaveCustomerGatewayResponse> = Promise.resolve({
       customer: { name: request.name },
     });
     return response;

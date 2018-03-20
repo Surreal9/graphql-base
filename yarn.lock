@@ -2265,6 +2265,10 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
+inversify-inject-decorators@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/inversify-inject-decorators/-/inversify-inject-decorators-3.1.0.tgz#d9941080bad77cec8a65ee29d905e4d5d73e1e95"
+
 inversify@^4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.11.1.tgz#9a10635d1fd347da11da96475b3608babd5945a6"
@@ -4025,6 +4029,10 @@ postgres-interval@^1.1.0:
   dependencies:
     xtend "^4.0.0"
 
+postinstall-build@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/postinstall-build/-/postinstall-build-5.0.1.tgz#b917a9079b26178d9a24af5a5cd8cb4a991d11b9"
+
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -5046,6 +5054,16 @@ ts-jest@^22.4.1:
     pkg-dir "^2.0.0"
     yargs "^11.0.0"
 
+ts-mockito@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/ts-mockito/-/ts-mockito-2.3.0.tgz#c1836f04ec037cad82cfd7b3b66d52fc75adfcc7"
+  dependencies:
+    lodash "^4.17.5"
+
+ts-mocks@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ts-mocks/-/ts-mocks-2.1.0.tgz#23456fd58d33026c0d5a749e7c362de9011cd904"
+
 ts-node@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-5.0.1.tgz#78e5d1cb3f704de1b641e43b76be2d4094f06f81"
@@ -5130,6 +5148,14 @@ type-is@~1.6.15:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typemoq@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/typemoq/-/typemoq-2.1.0.tgz#4452ce360d92cf2a1a180f0c29de2803f87af1e8"
+  dependencies:
+    circular-json "^0.3.1"
+    lodash "^4.17.4"
+    postinstall-build "^5.0.1"
 
 typescript-eslint-parser@^14.0.0:
   version "14.0.0"

@@ -8,6 +8,7 @@
     ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
   },
   "globalSetup": "<rootDir>/test/global-setup.js",
+  "setupFiles": ["<rootDir>/test/test-setup.ts"],
   "testEnvironment": "node",
   "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
   "moduleFileExtensions": ["ts", "js", "json"]

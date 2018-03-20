@@ -12,5 +12,6 @@
   // "javascript.validate.enable": false,
   "editor.formatOnSave": true,
   "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5"
+  "prettier.trailingComma": "es5",
+  "jest.pathToConfig": "./jest.config.json"
 }
