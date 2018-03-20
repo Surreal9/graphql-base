@@ -9,7 +9,6 @@ import { CustomerDbGateway } from '../../entity-gateways/customer-db-gateway';
 import { TYPES } from './constants';
 import { SaveCustomerInteractor } from '../../core/interactors/customer/save-customer';
 import { KnexGateway } from '../../entity-gateways/knex-gateway';
-import { LoadCustomerInteractor } from '../../core/interactors/customer/load-customer';
 import { ApiContext, CustomerApiContext } from './api-context';
 import { CustomerApi } from '../../boundary/customer';
 
@@ -19,7 +18,7 @@ export const config = new ContainerModule(bind => {
     SaveCustomerInteractor
   );
   bind<LoadCustomerInteraction>(TYPES.LoadCustomerInteraction).to(
-    LoadCustomerInteractor
+    CustomerDbGateway
   );
   bind<KnexGateway>(TYPES.KnexGateway)
     .to(KnexGateway)

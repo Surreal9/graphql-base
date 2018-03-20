@@ -19,8 +19,8 @@ export interface SaveCustomerInteraction {
 }
 
 export interface LoadCustomerInteraction {
-  allCustomers(): Promise<LoadAllCustomerResponse>;
-  customerByName(
+  loadAllCustomers(): Promise<LoadAllCustomerResponse>;
+  loadCustomerByName(
     request: LoadCustomerByNameRequest
   ): Promise<LoadCustomerByNameResponse>;
 }

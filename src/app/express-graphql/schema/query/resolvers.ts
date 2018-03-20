@@ -3,7 +3,7 @@ module.exports = {
   Query: {
     customers(root: any, args: any, context: GraphqlContext) {
       return context.api.customer.load
-        .allCustomers()
+        .loadAllCustomers()
         .then(data => data.customers);
     },
   },
