@@ -1,40 +1,38 @@
 const path = require('path');
-const { some } = require('lodash');
+const { some, toNumber } = require('lodash');
 const fs = require('fs');
 const { promisify } = require('util');
 const npmRun = require('npm-run');
 
-const asyncReadFile = promisify(fs.readFileSync);
-const asyncWriteFile = promisify(fs.writeFileSync);
+const asyncReadFile = promisify(fs.readFile);
+const asyncWriteFile = promisify(fs.writeFile);
 
 const { getChangedFilesForRoots } = require('jest-changed-files');
 
 async function getCachedSha() {
   const cacheFile = path.join(__dirname, 'cached_sha');
-  const content = await asyncReadFile(path.join(cacheFile), 'utf8').catch(
-    () => ''
-  );
-  console.log('content', content);
+  const content = await asyncReadFile(cacheFile, 'utf8').catch(() => '');
   return content;
+}
+
+async function putCachedSha(sha) {
+  const cacheFile = path.join(__dirname, 'cached_sha');
+  const content = await asyncWriteFile(cacheFile, sha, 'utf8').catch(() => '');
 }
 
 // Return true if either
 async function checkForTestShaCache() {
   // See if we've cached the last git SHA of when we ran tests
   const cachedSha = await getCachedSha();
-  if (cachedSha) {
-    const curSha = require('child_process')
-      .execSync('git rev-parse HEAD')
-      .toString()
-      .trim();
-    console.log({ curSha });
-    if (curSha !== cachedSha) {
-      return true;
-    }
-  } else {
-    return true;
+  const curSha = require('child_process')
+    .execSync('git rev-parse HEAD')
+    .toString()
+    .trim();
+  if (cachedSha === curSha) {
+    return false;
   }
-  return false;
+  await putCachedSha(curSha);
+  return true;
 }
 
 // Get list of files since last git commit, look for database work to reset the test db
@@ -43,30 +41,15 @@ function checkForRecentDatabaseChanges() {
     const files = Array.from(changedFiles);
     return some(
       files,
-      file => file.includes('migration') || file.includes('seed')
+      file =>
+        file.includes('migration') ||
+        file.includes('seed') ||
+        file.includes('fixtures')
     );
   });
 }
 
 function reset() {
-  // console.log('Attempt to reset db');
-  // return new Promise(function(resolve, reject) {
-  //   // const child = exec('. ~/.nvm/nvm.sh ; npm run reset-test-db');
-  //   const child = spawn('pwd');
-
-  //   child.stdout.on('data', function(data) {
-  //     process.stdout.write(data);
-  //   });
-
-  //   child.on('error', function(data) {
-  //     console.log('error', data);
-  //     reject('Reset db errored!');
-  //   });
-
-  //   child.on('exit', function() {
-  //     resolve('Reset test db success');
-  //   });
-  // });
   npmRun.sync(`ts-node -e "require('./database/db-reset').resetFromCLI()"`, {
     stdio: [0, 1, 2],
   });

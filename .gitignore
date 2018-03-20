@@ -7,3 +7,4 @@ doc/schema
 coverage
 dist
 yarn-error.log
+test/cached_sha
