@@ -37,7 +37,6 @@ export default function loadSchema() {
   }
 
   const resolvers: any = merge({}, ...typeResolvers);
-  console.log(resolvers);
 
   const executableSchema: any = makeExecutableSchema({
     resolvers,

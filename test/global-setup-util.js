@@ -20,7 +20,11 @@ async function putCachedSha(sha) {
   const content = await asyncWriteFile(cacheFile, sha, 'utf8').catch(() => '');
 }
 
-// Return true if either
+// The idea here is to check to see if the current commit sha in git has changed
+// since the last test run. If it has, then it's possible the user has changed
+// branches or switched to a different commit which potentially has database changes.
+// This accounts for db changes which wouldn't otherwise
+// be picked up in checkForRecentDatabaseChanges
 async function checkForTestShaCache() {
   // See if we've cached the last git SHA of when we ran tests
   const cachedSha = await getCachedSha();

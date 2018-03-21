@@ -11,15 +11,14 @@
     "clean": "rm -rf dist",
     "concat-schema": "find ./src/app/express-graphql/schema -type f -name '*.graphql' -exec cat {} + > ./dist/src/app/express-graphql/schema.graphql",
     "build": "npm run clean && tsc -p ./tsconfig.json --pretty && npm run concat-schema && cp .env dist/.env",
-    "debug": "npm run build && NODE_ENV=development nodemon --watch ./dist --inspect=0.0.0.0:5858 --nolazy ./dist/src/app/express-graphql/start.js",
+    "dev": "NODE_ENV=development nodemon -r ts-node/register --watch src --inspect=0.0.0.0:5858 --nolazy src/app/express-graphql/start.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "dev": "NODE_ENV=development nodemon --watch src -e ts,graphql,js --exec 'npm run debug'",
     "precommit": "lint-staged",
     "test": "NODE_ENV=test jest --no-cache --config ./jest.config.json",
     "create-migration": "knex migrate:make",
     "migrations": "knex migrate:latest",
-    "reset-db": "npm run build && node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
-    "reset-test-db": "npm run build && NODE_ENV=test node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
+    "reset-db": "ts-node -e \"require('./database/db-reset').resetFromCLI()\"",
+    "reset-test-db": "NODE_ENV=test ts-node -e \"require('./dist/database/db-reset').resetFromCLI()\"",
     "seed": "npm run build && knex seed:run --knexfile dist/knexfile.js"
   },
   "lint-staged": {

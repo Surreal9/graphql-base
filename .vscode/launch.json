@@ -16,7 +16,7 @@
       "name": "Local Nodemon",
       "protocol": "auto",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "debug"],
+      "runtimeArgs": ["run", "dev"],
       "restart": true,
       "port": 5858,
       "console": "integratedTerminal",

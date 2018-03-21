@@ -27,7 +27,7 @@ export class CustomerDbGateway implements CustomerGateway {
   ): Promise<SaveCustomerGatewayResponse> {
     const qb = this.knexGateway.getBuilder('customers');
     await qb.insert(request);
-    return { customer: { name: request.name } };
+    return { customer: request };
   }
 
   public async loadAllCustomers(): Promise<LoadAllCustomerResponse> {
