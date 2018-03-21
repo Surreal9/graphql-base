@@ -22,10 +22,10 @@ export default function loadSchema() {
   schemaTypes.forEach(t => {
     const resolverFile = `./schema/${t}/resolvers`;
     if (existsSync(pathJoin(__dirname, `${resolverFile}.ts`))) {
-      typeResolvers.push(require(resolverFile));
+      typeResolvers.push(require(resolverFile).default);
     }
     if (existsSync(pathJoin(__dirname, `${resolverFile}.js`))) {
-      typeResolvers.push(require(resolverFile));
+      typeResolvers.push(require(resolverFile).default);
     }
   });
 
@@ -37,6 +37,7 @@ export default function loadSchema() {
   }
 
   const resolvers: any = merge({}, ...typeResolvers);
+  console.log(resolvers);
 
   const executableSchema: any = makeExecutableSchema({
     resolvers,
