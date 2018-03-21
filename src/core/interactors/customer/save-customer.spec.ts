@@ -1,6 +1,4 @@
-// import { SaveCustomerInteraction } from './../../../boundary/customer';
-import { config } from '../../../app/container/container.config';
-console.log(config);
+import { rebindContainer, container } from '../../../../test/test-util';
 import { SaveCustomerInteractor } from './save-customer';
 import { TYPES } from '../../../app/container/constants';
 import { CustomerType } from '../../entities/customer';
@@ -66,12 +64,7 @@ test('can save with a mock, injected', async () => {
     .returns(() => Promise.resolve({ customer: newCustomer }));
 
   // Configure our IoC container to return our mock
-  const container = new Container();
-  container.load(config);
-  container.unbind(TYPES.CustomerGateway);
-  container
-    .bind(TYPES.CustomerGateway)
-    .toConstantValue(mockCustomerGateway.object);
+  rebindContainer(TYPES.CustomerGateway, mockCustomerGateway.object);
 
   // Use IoC to resolve our system under test
   const saveCustomerInteractor = container.get<SaveCustomerInteraction>(

@@ -1,11 +1,20 @@
+import 'reflect-metadata';
 import 'jest';
-import { config as containerConfig } from '../src/app/container/container.config';
-import { Container } from 'inversify';
+import knex from 'knex';
+import { container, rebindContainer } from './test-util';
 import { TYPES } from '../src/app/container/constants';
+import { KnexGateway } from '../src/entity-gateways/knex-gateway';
 
-export function getContainer() {
-  const container = new Container();
-  container.load(containerConfig);
-  container.unbind(TYPES.KnexGateway);
-  return container;
-}
+let trx: knex.Transaction;
+
+beforeEach(async () => {
+  container.snapshot();
+  const knexGateway = new KnexGateway();
+  rebindContainer(TYPES.KnexGateway, knexGateway);
+  trx = await knexGateway.startTransaction();
+});
+
+afterEach(async () => {
+  await trx.rollback(new Error('rolling back trx'));
+  container.restore();
+});

@@ -2,7 +2,7 @@ import container from '../app/container/container.config';
 import { TYPES } from '../app/container/constants';
 import { CustomerDbGateway } from './customer-db-gateway';
 
-test('can load a customer', async () => {
+test('can load all customers', async () => {
   const loadCustomer = container.get<CustomerDbGateway>(
     TYPES.LoadCustomerInteraction
   );
