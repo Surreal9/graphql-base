@@ -3,7 +3,7 @@ import 'jest';
 import knex from 'knex';
 import { container, rebindContainer } from './test-util';
 import { TYPES } from '../src/app/container/constants';
-import { KnexGateway } from '../src/entity-gateways/knex-gateway';
+import { KnexGateway } from '../src/gateways/knex-gateway';
 
 let trx: knex.Transaction;
 

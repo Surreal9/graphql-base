@@ -3,7 +3,7 @@ import { SaveCustomerInteractor } from './save-customer';
 import { TYPES } from '../../../app/container/constants';
 import { CustomerType } from '../../entities/customer';
 import { Container, decorate, injectable } from 'inversify';
-import { CustomerDbGateway } from '../../../entity-gateways/customer-db-gateway';
+import { CustomerDbGateway } from '../../../gateways/customer-db-gateway';
 import {
   CustomerGateway,
   SaveCustomerInteraction,
@@ -19,7 +19,7 @@ import {
 import { mock, when, anything } from 'ts-mockito';
 import { Mock } from 'ts-mocks';
 import * as TypeMoq from 'typemoq';
-import { KnexGateway } from '../../../entity-gateways/knex-gateway';
+import { KnexGateway } from '../../../gateways/knex-gateway';
 
 test('can save with a mock', async () => {
   const newCustomer: CustomerType = { name: 'test customer' };

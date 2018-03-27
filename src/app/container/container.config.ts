@@ -5,10 +5,10 @@ import {
   LoadCustomerInteraction,
   SaveCustomerInteraction,
 } from './../../boundary/customer';
-import { CustomerDbGateway } from '../../entity-gateways/customer-db-gateway';
+import { CustomerDbGateway } from '../../gateways/customer-db-gateway';
 import { TYPES } from './constants';
 import { SaveCustomerInteractor } from '../../core/interactors/customer/save-customer';
-import { KnexGateway } from '../../entity-gateways/knex-gateway';
+import { KnexGateway } from '../../gateways/knex-gateway';
 import { ApiContext, CustomerApiContext } from './api-context';
 import { CustomerApi } from '../../boundary/customer';
 
